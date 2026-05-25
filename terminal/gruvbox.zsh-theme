@@ -88,9 +88,9 @@ prompt_end() {
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
-  # if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    # prompt_segment 237 7 "%(!.%{%F{3}%}.)%n@%m"
-  # fi
+   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+      prompt_segment 237 7 "%(!.%{%F{3}%}.)%n"
+   fi
   case "$OSTYPE" in
     darwin*)  OS_LOGO="\ue29e" ;; # 
     linux*)   OS_LOGO="\ue712" ;; # 
@@ -241,7 +241,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment 4 $CURRENT_FG '%~'
+  prompt_segment 179 $CURRENT_FG '%~'
 }
 
 # Virtualenv: current working virtualenv
@@ -264,7 +264,7 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{11}%}\ue77a" #
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{15}%}\ufb36" #󰘷
 
-  [[ -n "$symbols" ]] && prompt_segment 166 7 "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment 160 7 "$symbols"
 }
 
 ## Main prompt
